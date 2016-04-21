@@ -1,1 +1,28 @@
-user.html
+<div ng-controller="UserController">
+<h1>Username: {{user.name}}</h1>
+<a href="#/dashboard">Back to Dashboard</a>
+
+<table class="table table-hover table-bordered">
+	<thead>
+		<tr>
+			<th>Activity</th>
+			<th>Count</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Topics</td>
+			<td ng-bind="user._topics.length"></td>
+		</tr>
+		<tr>
+			<td>Posts</td>
+			<td ng-bind="user._postings.length"></td>
+		</tr>
+		<tr>
+			<td>Comments</td>
+			<td ng-bind="user._comments.length"></td>
+		</tr>
+	</tbody>
+
+</table>
+</div>

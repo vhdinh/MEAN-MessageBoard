@@ -1,16 +1,57 @@
-<div ng-controller="LoginController">
+<div ng-controller="DashboardController">
 	<h1>Welcome {{user.name}}</h1>
 	<a href="" ng-click="logout()">Logout</a>
+	<!-- {{topics}} -->
+
+
+	<form class='forming'>
+		<h3>Sport Topics</h3>
+		<p> Topic: <input type="text" ng-model="topic.topic">
+		Category:
+		<select ng-model="topic.category">
+						<option value="Tennis">Tennis</option>
+						<option value="Basketball">Basketball</option>
+						<option value="Soccer">Soccer</option>
+						<option value="Football">Football</option>
+						<option value="Ping Pong">Ping Pong</option>
+						<option value="Volleyball">Volleyball</option>
+						<option value="Baseball">Baseball</option>
+						<option value="Golf">Golf</option>
+						<option value="Hockey">Hockey</option>
+					</select>
+		Description:
+		<input ng-model="topic.description" style="width: 40%"></input> 
+	<button ng-click="addTopic()">Submit</button>
+		</p>
+	</form>
+
+<hr>
 
 	<!-- ADD THE TABLE OF TOPICS HERE -->
 
-
-
 	<form>
-		<h3>Add a New Topic</h3>
-		Topic: <input type="text" ng-model="topic.topic">
-		Description: <input type="text" ng-model="topic.desc">
-		
-
+		<input type="text" placeholder="Filter" ng-model="filtering">
 	</form>
+
+	<table class="table table-hover table-border">
+		<thead>
+			<tr>
+				<th>Category</th>
+				<th>Topic</th>
+				<th>User Name</th>
+				<th>Posts</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="topic in topics | filter: filtering">
+				<td ng-bind="topic.category"></td>
+				<td><a href="#/topic/{{topic._id}}" ng-bind="topic.topic"></a></td>
+				<td><a href="#/user/{{topic._user._id}}" ng-bind="topic._user.name"></a></td>
+				<td ng-bind="topic._postings.length"></td>
+			</tr>
+
+		</tbody>	
+	</table>
+
+
 </div>

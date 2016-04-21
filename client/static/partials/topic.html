@@ -1,1 +1,51 @@
-topic.html
+<div ng-controller="TopicController">
+	<a href="#/dashboard">Back to Dashboard</a>  |  
+	<a href="" ng-click="logout()">Logout</a>	
+	<!-- {{topic}} -->
+	<div>
+	<h3><a href="#/user/{{topic._user._id}}" ng-bind="topic._user.name"></a> posted a topic:</h3>
+		<h4 ng-bind="topic.topic"></h4>
+		<p>description: <span ng-bind="topic.description"></span></p>
+	</div>
+<hr>
+	<div>
+		<p>Post your answer here....</p>
+		<form>
+			<textarea ng-model="posting.post" cols="50"></textarea>
+			<br>
+			<button ng-click="addPost()">Post</button>
+
+		</form>
+	</div>
+
+<hr>
+
+<!-- Load all the prior posts --> 
+<!-- {{posts}} -->
+<div  class="posts" ng-repeat="post in posts" style="border-top: 1px solid gray;">
+	<br>
+	<p>
+		<button ng-click="like(post)" class="glyphicon glyphicon-menu-up"></button>
+		<span ng-bind="post.likes" style="color: green"></span> 
+		<button ng-click="dislike(post)" class="glyphicon glyphicon-menu-down"></button>
+		<span ng-bind="post.dislikes" style="color: red"></span>
+	</p>
+	<!-- <p>post ID : {{post._id}}</p> -->
+	<p><a href="#/user/{{post._user._id}}" ng-bind="post._user.name"></a>: <span ng-bind="post.message"></span></p>
+
+	<!-- Comment on posts goes here -->
+	<!-- {{comments}} -->
+		<ul class="comments" ng-repeat="comment in comments">
+			<li ng-If="comment._posting == post._id"> <a href="#/user/{{comment._user._id}}">{{comment._user.name}}</a> : <span ng-bind="comment.comment" ></span></li>
+		</ul>
+
+	<!-- Form to make a comment -->
+	<form>
+		<input type="text" ng-model="new_comment.comment" style="width: 75%">
+		<button ng-click="addComment(new_comment, post)">Add Comment</button>
+	</form>
+	<br>
+</div>
+
+
+</div>

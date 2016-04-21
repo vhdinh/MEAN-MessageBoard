@@ -1,1 +1,12 @@
-style.css
+#container {
+	margin: 25px;
+}
+
+.posts {
+	margin-left: 25px;
+}
+
+
+.comments li {
+	list-style: none;
+}

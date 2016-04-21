@@ -1,4 +1,4 @@
-console.log("IN CONTROLLERS/MODELS/USER.JS FILE")
+// console.log("IN CONTROLLERS/MODELS/USER.JS FILE")
 
 var mongoose = require("mongoose");
 
@@ -7,7 +7,6 @@ var User = mongoose.model("users")
 module.exports = (function(){
 	return {
 		login : function(req, res){
-			console.log("IN USERS CONTROLLER LOGIN METHOD: ", req.body)
 			User.findOne({name: req.body.name}, function(err, user){
 				if(err){
 					console.log("ERRORRR - ",err)
@@ -33,6 +32,16 @@ module.exports = (function(){
 		},
 
 
+		getOneUser: function(req, res){
+			User.findOne({_id: req.body}, function(err, user){
+				if(err){
+					res.json(err)
+				}
+				else{
+					res.json(user)
+				}
+			})
+		},
 
 	}
 })();
